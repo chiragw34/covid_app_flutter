@@ -1,6 +1,8 @@
 import 'dart:convert';
 
 import 'package:covid_app/datasource.dart';
+import 'package:covid_app/pages/countryPage.dart';
+import 'package:covid_app/panels/infoPanel.dart';
 import 'package:covid_app/panels/mostaffectedcountries.dart';
 import 'package:covid_app/panels/worldwidepannel.dart';
 import 'package:flutter/material.dart';
@@ -85,18 +87,28 @@ class _HomePageState extends State<HomePage> {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  Container(
-                    decoration: BoxDecoration(
-                      color: primaryBlack,
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    padding: EdgeInsets.all(10),
-                    child: Text(
-                      'Regional',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => CountryPage(),
+                        ),
+                      );
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: primaryBlack,
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      padding: EdgeInsets.all(10),
+                      child: Text(
+                        'Regional',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
                       ),
                     ),
                   ),
@@ -128,7 +140,26 @@ class _HomePageState extends State<HomePage> {
                 ? loading
                 : MostAffectedPanel(
                     countryData: countryData,
-                  )
+                  ),
+            SizedBox(
+              height: 30,
+            ),
+            InfoPanel(),
+            SizedBox(
+              height: 20,
+            ),
+            Center(
+              child: Text(
+                'We are Together in the Fight',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16,
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 50,
+            )
           ],
         ),
       ),
